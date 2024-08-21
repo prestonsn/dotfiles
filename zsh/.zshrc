@@ -27,6 +27,8 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 source <(fzf --zsh)
 
+# added for ls colors on macos
+export CLICOLOR=1
 
 # init oh my post prompt
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
@@ -52,3 +54,5 @@ export PATH="$HOME/bin/clickhouse-server/usr/local/bin:$PATH"
 export GOROOT="/opt/homebrew/opt/go@1.20/libexec"
 
 export PATH="/opt/homebrew/opt/go@1.20/libexec/bin:$PATH"
+
+export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"

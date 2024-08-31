@@ -35,8 +35,8 @@ o.pumheight = 30
 -- have a fixed column for the diagnostics to appear in
 -- this removes the jitter/shift right when warnings/errors flow in
 vim.wo.signcolumn = "yes"
--- show line numbers
-vim.wo.number = true
+-- show relative line numbers by default
+vim.opt.relativenumber = true
 -- colorscheme
 vim.cmd.colorscheme(settings.colorscheme)
 vim.o.background = settings.background

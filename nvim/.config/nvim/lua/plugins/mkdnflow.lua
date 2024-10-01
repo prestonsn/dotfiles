@@ -9,6 +9,8 @@ return {
 					MkdnEnter = { { 'n', 'v', 'i' }, '<CR>' },
 					MkdnFoldSection = false,
 					MkdnUnfoldSection = false,
+					MkdnTableNextCell = false,
+					MkdnTablePrevCell = false,
 				}
 			}
 		)

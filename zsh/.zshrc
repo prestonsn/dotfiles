@@ -45,8 +45,6 @@ export GOPATH="$HOME/go"
 
 export PATH="$HOME/go/bin:$PATH"
 
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
-
 export PATH="$HOME/bin/clickhouse-server/usr/bin:$PATH"
 
 export PATH="$HOME/bin/clickhouse-server/usr/local/bin:$PATH"

@@ -119,7 +119,10 @@ vim.keymap.set({ 'n' }, "<leader>fb", tele_builtin.buffers, { desc = "Find Buffe
 vim.keymap.set({ 'n' }, "<leader>fz", tele_builtin.current_buffer_fuzzy_find, { desc = "Buffer Fuzzy Find" })
 vim.keymap.set({ 'n' }, "<leader>f?", tele_builtin.help_tags, { desc = "Find Help" })
 vim.keymap.set({ 'n' }, "<leader>fw", tele_builtin.grep_string, { desc = "Grep Word Under Cursor" })
-vim.keymap.set({ 'n' }, "<leader>fr", tele_builtin.lsp_references, { desc = "Find References" })
+vim.keymap.set({ 'n' }, "<leader>fr",
+	-- disabling show_line as it takes up too much horizontal space (just show file location, preview will show line/text)
+	function() tele_builtin.lsp_references({ show_line = false }) end,
+	{ desc = "Find References" })
 vim.keymap.set({ 'n' }, "<leader>fs", tele_builtin.lsp_document_symbols, { desc = "Document Symbols" })
 vim.keymap.set({ 'n' }, "<leader>fS", tele_builtin.lsp_workspace_symbols, { desc = "Workspace Symbols" })
 vim.keymap.set({ 'n' }, "<leader>fq", tele_builtin.diagnostics, { desc = "LSP Diagnostics" })

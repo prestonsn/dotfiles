@@ -84,6 +84,9 @@ miniclue.setup({
 		{ mode = 'n', keys = '<leader>g',  desc = 'Git' },
 		{ mode = 'n', keys = '<leader>gn', postkeys = '<leader>g' },
 		{ mode = 'n', keys = '<leader>gp', postkeys = '<leader>g' },
+
+		-- Code Companion
+		{ mode = 'n', keys = '<leader>c',  desc = 'Code Companion' },
 	},
 })
 
@@ -142,6 +145,10 @@ vim.keymap.set({ 'n' }, "<leader>fl", tele_builtin.colorscheme, { desc = "Color 
 vim.keymap.set({ 'n' }, "<leader>fj", tele_builtin.jumplist, { desc = "Vim Jumplist" })
 vim.keymap.set({ 'n' }, "<leader>fk", tele_builtin.keymaps, { desc = "Vim Keymaps" })
 vim.keymap.set({ 'n' }, "<leader>fu", tele_builtin.resume, { desc = "Resume Telescope" })
+
+-- Code Companion
+vim.keymap.set({ 'n' }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })
+vim.keymap.set({ 'n', 'v' }, "<leader>ca", "<cmd>CodeCompanionActions<CR>", { desc = "Actions" })
 
 -- Terminal
 -- Exit terminal mode with ctrl-w hjkl buffer navigation

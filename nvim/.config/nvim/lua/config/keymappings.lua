@@ -87,6 +87,9 @@ miniclue.setup({
 
 		-- Code Companion
 		{ mode = 'n', keys = '<leader>c',  desc = 'Code Companion' },
+
+		-- Iron Repl
+		{ mode = 'n', keys = '<leader>r',  desc = 'Iron Repl' },
 	},
 })
 
@@ -149,6 +152,29 @@ vim.keymap.set({ 'n' }, "<leader>fu", tele_builtin.resume, { desc = "Resume Tele
 -- Code Companion
 vim.keymap.set({ 'n' }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })
 vim.keymap.set({ 'n', 'v' }, "<leader>ca", "<cmd>CodeCompanionActions<CR>", { desc = "Actions" })
+
+-- Iron Repl
+vim.keymap.set({ 'n' }, "<leader>rr", "<cmd>IronRepl<CR>", { desc = "Toggle Repl" })
+vim.keymap.set({ 'n' }, "<leader>rz", "<cmd>IronRestart<CR>", { desc = "Restart Repl" })
+vim.keymap.set({ 'n' }, "<leader>rq", function()
+	require('iron.core').send(nil, string.char(03))
+end, { desc = "Interrupt Repl" })
+vim.keymap.set({ 'n' }, "<leader>ri", "<cmd>IronFocus<CR>", { desc = "Focus Repl" })
+vim.keymap.set({ 'n', 'v' }, "<leader>rF", function()
+	require('iron.core').send_file()
+end, { desc = "Send File" })
+vim.keymap.set({ 'n', 'v' }, "<leader>rl", function()
+	require('iron.core').send_line()
+end, { desc = "Send Line" })
+vim.keymap.set({ 'n', 'v' }, "<leader>rf", function()
+	local iron = require('iron.core')
+	iron.mark_visual()
+	iron.send_mark()
+	iron.mark_visual()
+end, { desc = "Send Selection" })
+vim.keymap.set({ 'n', 'v' }, "<leader>rb", function()
+	require('iron.core').send_code_block(true)
+end, { desc = "Send Code Block" })
 
 -- Terminal
 -- Exit terminal mode with ctrl-w hjkl buffer navigation

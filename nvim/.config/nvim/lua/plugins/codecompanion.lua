@@ -24,6 +24,18 @@ return {
 						},
 					})
 				end,
+				gemini = function()
+					return require("codecompanion.adapters").extend("gemini", {
+						env = {
+							api_key = "...",
+						},
+						schema = {
+							model = {
+								default = "gemini-2.0-flash-thinking-exp-01-21",
+							},
+						},
+					})
+				end
 			},
 		})
 	end,

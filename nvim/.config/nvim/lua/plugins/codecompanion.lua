@@ -15,24 +15,10 @@ return {
 				},
 			},
 			adapters = {
-				copilot = function()
-					return require("codecompanion.adapters").extend("copilot", {
-						schema = {
-							model = {
-								default = "o3-mini-2025-01-31",
-							},
-						},
-					})
-				end,
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
 						env = {
 							api_key = "...",
-						},
-						schema = {
-							model = {
-								default = "gemini-2.0-flash-thinking-exp",
-							},
 						},
 					})
 				end

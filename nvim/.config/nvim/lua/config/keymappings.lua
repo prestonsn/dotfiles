@@ -149,9 +149,12 @@ vim.keymap.set({ 'n' }, "<leader>fj", tele_builtin.jumplist, { desc = "Vim Jumpl
 vim.keymap.set({ 'n' }, "<leader>fk", tele_builtin.keymaps, { desc = "Vim Keymaps" })
 vim.keymap.set({ 'n' }, "<leader>fu", tele_builtin.resume, { desc = "Resume Telescope" })
 
--- Code Companion
+-- Code Companion and copilot
 vim.keymap.set({ 'n' }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })
 vim.keymap.set({ 'n', 'v' }, "<leader>ca", "<cmd>CodeCompanionActions<CR>", { desc = "Actions" })
+vim.keymap.set({ 'n', 'v' }, "<leader>cp", "<cmd>Copilot panel<CR>", { desc = "Copilot Suggestions Panel" })
+vim.keymap.set({ 'i' }, '<C-f>', '<Plug>(copilot-next)', { desc = "Next Copilot Suggestion" })
+
 
 -- Iron Repl
 vim.keymap.set({ 'n' }, "<leader>rr", "<cmd>IronRepl<CR>", { desc = "Toggle Repl" })

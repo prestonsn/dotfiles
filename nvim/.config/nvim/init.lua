@@ -204,12 +204,12 @@ require("telescope").setup {
 			i = {
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 				["<C-y>"] = copy_tele_selection,
-				["<c-f>"] = actions.to_fuzzy_refine,
+				["<C-f>"] = actions.to_fuzzy_refine,
 			},
 			n = {
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 				["<C-y>"] = copy_tele_selection,
-				["<c-f>"] = actions.to_fuzzy_refine,
+				["<C-f>"] = actions.to_fuzzy_refine,
 			},
 		},
 		-- ignore git and node_modules directories since no longer ignoring hidden files

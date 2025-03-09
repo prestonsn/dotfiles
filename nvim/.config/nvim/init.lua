@@ -210,6 +210,20 @@ require("telescope").setup {
 				["<C-y>"] = copy_tele_selection,
 			},
 		},
+		-- ignore git and node_modules directories since no longer ignoring hidden files
+		file_ignore_patterns = { ".git/", "node_modules" },
+		-- args for live grep, set here to include hidden files
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--hidden",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--trim",
+		},
 	},
 	pickers = {
 		find_files = {

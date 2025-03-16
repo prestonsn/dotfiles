@@ -179,6 +179,10 @@ vim.keymap.set({ 'n', 'v' }, "<leader>rb", function()
 	require('iron.core').send_code_block(true)
 end, { desc = "Send Code Block" })
 
+
+-- Lua utils
+vim.keymap.set({ 'n', 'v' }, "<leader>v", require('lua_utils').exec_lua, { desc = "Execute Lua" })
+
 -- Terminal
 -- Exit terminal mode with ctrl-w hjkl buffer navigation
 vim.keymap.set({ "t" }, "<C-w>h", "<C-\\><C-n><C-w>h", { desc = "Focus left" })

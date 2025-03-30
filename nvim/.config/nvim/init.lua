@@ -43,9 +43,6 @@ vim.o.background = settings.background
 -- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
 vim.api.nvim_set_option_value('updatetime', 750, {})
 
--- Hookup lsp status before attaching any lsp (to be used in status line)
-require('lsp-status').register_progress()
-
 -- using mason for lsp setup
 require("mason").setup()
 -- mason-lspconfig just to simplify setup of lsp
@@ -166,7 +163,7 @@ require('lualine').setup {
 		lualine_b = { 'branch', 'diff', 'diagnostics' },
 		-- path = 2 for absolute file path
 		lualine_c = { { 'filename', path = 2 } },
-		lualine_x = { 'require("lsp-status").status()', 'encoding', 'fileformat', 'filetype' },
+		lualine_x = { 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location' }
 	},

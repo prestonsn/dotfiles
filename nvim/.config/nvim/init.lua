@@ -110,6 +110,7 @@ vim.g.rustaceanvim = {
 	server = {
 		on_attach = {},
 		capabilities = {},
+		load_vscode_settings = false,
 		default_settings = {
 			-- rust-analyzer language server configuration
 			['rust-analyzer'] = {

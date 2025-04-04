@@ -43,6 +43,15 @@ vim.o.background = settings.background
 -- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
 vim.api.nvim_set_option_value('updatetime', 750, {})
 
+-- Default to rounded borders for floating windows (only if unset)
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+---@diagnostic disable-next-line: duplicate-set-field
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or "rounded"
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 -- using mason for lsp setup
 require("mason").setup()
 -- mason-lspconfig just to simplify setup of lsp

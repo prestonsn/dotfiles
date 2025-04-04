@@ -10,11 +10,31 @@ local function open_output_buffer(lines)
 			table.insert(processed_lines, subline)
 		end
 	end
-	vim.cmd('vnew')
+
+	-- Create new buffer safely
+	local ok_vnew, err_vnew = pcall(function()
+		vim.cmd('vnew')
+	end)
+
+	if not ok_vnew then
+		vim.notify("Error creating new buffer: " .. err_vnew, vim.log.levels.ERROR)
+		return
+	end
+
 	local new_buf = vim.api.nvim_get_current_buf()
-	vim.bo[new_buf].bufhidden = 'wipe'
-	vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, processed_lines)
-	vim.bo[new_buf].modified = false
+
+	-- Set buffer options and lines safely
+	local ok_set, err_set = pcall(function()
+		vim.bo[new_buf].bufhidden = 'wipe'
+		vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, processed_lines)
+		vim.bo[new_buf].modified = false
+	end)
+
+	if not ok_set then
+		vim.notify("Error setting buffer content/options: " .. err_set, vim.log.levels.ERROR)
+		-- Optional: Close the potentially problematic buffer? vim.cmd('bdelete! ' .. new_buf)
+		return
+	end
 end
 
 -- Define function to execute Lua code from selection or entire file
@@ -44,23 +64,24 @@ function M.exec_lua()
 
 	-- Set up output capture by overriding print function
 	local output = {}
-	local original_print = print
+	local original_print = _G.print -- Store the original global print
 
 	local function custom_print(...)
 		local strs = {}
 		for _, v in ipairs({ ... }) do
 			table.insert(strs, tostring(v))
 		end
-		table.insert(output, table.concat(strs, " "))
+		-- Use tab separator like standard print
+		table.insert(output, table.concat(strs, "\t"))
 	end
 
-	print = custom_print
+	_G.print = custom_print -- Override the global print
 
 	-- Execute the loaded Lua code safely
 	local ok, result = xpcall(chunk, debug.traceback)
 
 	-- Restore the original print function
-	print = original_print
+	_G.print = original_print
 
 	-- Process output depending on execution result
 	if not ok then

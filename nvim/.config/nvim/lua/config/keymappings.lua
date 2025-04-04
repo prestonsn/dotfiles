@@ -223,7 +223,22 @@ vim.keymap.set({ "n", "x" }, "<leader>es", tele_builtin.spell_suggest, { desc = 
 vim.keymap.set({ "n", "i" }, "<C-Space>", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 -- Misc. LSP
-vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Hover Text" })
+vim.keymap.set({ "n" }, "K", function()
+	local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+	local rust_lsp = false
+	for _, client in ipairs(clients) do
+		if client.name == "rust-analyzer" then
+			rust_lsp = true
+			break
+		end
+	end
+	if rust_lsp then
+		-- using RustLsp hover to get the rust-analyzer hover links
+		vim.cmd("RustLsp hover actions")
+	else
+		vim.lsp.buf.hover()
+	end
+end, { desc = "Hover Text" })
 
 -- Hop setup
 local hop = require('hop')

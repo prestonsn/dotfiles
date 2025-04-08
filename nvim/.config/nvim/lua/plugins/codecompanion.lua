@@ -6,6 +6,11 @@ return {
 	},
 	config = function()
 		require("codecompanion").setup({
+			display = {
+				action_palette = {
+					provider = "default",
+				},
+			},
 			strategies = {
 				chat = {
 					adapter = "copilot",

@@ -113,7 +113,6 @@ vim.keymap.set({ 'c' }, '<Down>', "<C-n>", { desc = 'Select next' })
 vim.keymap.set({ 'n' }, '<leader><f1>', function() vim.cmd.RustLsp('openDocs') end, { desc = 'Open Rust Doc' })
 
 -- Show line numbers inside telescope previews
-vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
 
 local tele_builtin = require('telescope.builtin')
 vim.keymap.set({ 'n' }, "<leader>ff",

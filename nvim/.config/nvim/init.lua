@@ -25,23 +25,22 @@ require('mini.bracketed').setup()
 require('mini.ai').setup()
 
 -- NOTE: `guess-indent` plugin will auto match existing file for indent settings so they are left default
-local o = vim.o
 -- smart/auto indent for new lines - seems to give best results but can also be autoindent = true or smartindent = true
-o.cindent = true
+vim.opt.cindent = true
 -- Keep popup menus from being too tall (limit to 30 items)
-o.pumheight = 30
+vim.opt.pumheight = 30
 
 -- Global settings
 -- have a fixed column for the diagnostics to appear in
 -- this removes the jitter/shift right when warnings/errors flow in
-vim.wo.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 -- show relative line numbers by default
 vim.opt.relativenumber = true
 -- colorscheme
 vim.cmd.colorscheme(settings.colorscheme)
-vim.o.background = settings.background
+vim.opt.background = settings.background
 -- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
-vim.api.nvim_set_option_value('updatetime', 750, {})
+vim.opt.updatetime = 750
 
 -- Default to rounded borders for floating windows (only if unset)
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

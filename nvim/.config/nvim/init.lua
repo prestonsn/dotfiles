@@ -97,8 +97,28 @@ require("lspconfig").lua_ls.setup({
 	}
 })
 
+-- zig lsp
 require('lspconfig').zls.setup({})
 
+-- python lsp
+require('lspconfig').pyright.setup({
+	settings = {
+		python = {
+			analysis = {
+				-- Ignore all files for analysis to exclusively use Ruff for linting
+				ignore = { '*' },
+			},
+			-- This is the relative path to the python interpreter for the virtualenv
+			pythonPath = ".venv/bin/python"
+		},
+		pyright = {
+			diagnosticMode = "workspace"
+		}
+	}
+})
+require('lspconfig').ruff.setup({})
+
+-- rust lsp
 vim.g.rustaceanvim = {
 	-- Plugin configuration
 	tools = {

@@ -117,6 +117,7 @@ local set_cwd = function()
 	local path = (MiniFiles.get_fs_entry() or {}).path
 	if path == nil then return vim.notify('Cursor is not on valid entry') end
 	vim.fn.chdir(vim.fs.dirname(path))
+	MiniFiles.trim_left()
 end
 
 -- Yank in register full path of entry under cursor

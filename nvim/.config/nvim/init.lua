@@ -10,27 +10,6 @@ require('config.keymappings')
 
 local settings = require('config.settings')
 
--- Basics from mini plugins
-require('mini.basics').setup({
-	mappings = {
-		basic = true,
-		option_toggle_prefix = '\\',
-		windows = true,
-	}
-})
-require('mini.surround').setup()
-require('mini.indentscope').setup({
-	draw = {
-		delay = 50,
-		animation = function()
-			return 0
-		end,
-	},
-})
-require('mini.bracketed').setup()
-require('mini.ai').setup()
-require('mini.files').setup()
-
 -- NOTE: `guess-indent` plugin will auto match existing file for indent settings so they are left default
 -- smart/auto indent for new lines - seems to give best results but can also be autoindent = true or smartindent = true
 vim.opt.cindent = true

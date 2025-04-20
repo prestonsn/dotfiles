@@ -93,9 +93,6 @@ miniclue.setup({
 	},
 })
 
--- Unmap 's' as I never use it and it overlaps with surround plugin key maps causing a delayed command
-vim.keymap.set({ 'n', 'x' }, "s", "<Nop>", { silent = true })
-
 -- Larger increments for window resizing
 vim.keymap.set({ 'n' }, "<C-w><", "5<C-w><", { noremap = true, desc = "Decrease width" })
 vim.keymap.set({ 'n' }, "<C-w>>", "5<C-w>>", { noremap = true, desc = "Increase width" })

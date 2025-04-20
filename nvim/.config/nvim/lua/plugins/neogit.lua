@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"sindrets/diffview.nvim",
-		"nvim-telescope/telescope.nvim",
+		"ibhagwan/fzf-lua"
 	},
 	keys = {
 		{ "<leader>gg", "<cmd>Neogit<CR>", mode = "n", desc = "Git Status" },

@@ -68,8 +68,8 @@ miniclue.setup({
 		miniclue.gen_clues.windows({ submode_resize = true }),
 		miniclue.gen_clues.z(),
 
-		-- Telescope
-		{ mode = 'n', keys = '<leader>f',  desc = 'Telescope' },
+		-- FzfLua
+		{ mode = 'n', keys = '<leader>f',  desc = 'FzfLua' },
 
 		-- Hop
 		{ mode = 'n', keys = '<leader>s',  desc = 'Hop' },
@@ -112,41 +112,39 @@ vim.keymap.set({ 'c' }, '<Down>', "<C-n>", { desc = 'Select next' })
 
 vim.keymap.set({ 'n' }, '<leader><f1>', function() vim.cmd.RustLsp('openDocs') end, { desc = 'Open Rust Doc' })
 
--- Show line numbers inside telescope previews
-
-local tele_builtin = require('telescope.builtin')
-vim.keymap.set({ 'n' }, "<leader>ff",
-	function() require 'telescope.builtin'.find_files({ find_command = { 'rg', '--files', '--hidden', '-g', '!.git' } }) end,
-	{ desc = "Find File" })
-vim.keymap.set({ 'n' }, "<leader>fF", tele_builtin.oldfiles, { desc = "Previous Files" })
-vim.keymap.set({ 'n' }, "<leader>fg", tele_builtin.live_grep, { desc = "Live Grep" })
-vim.keymap.set({ 'n' }, "<leader>fb", tele_builtin.buffers, { desc = "Find Buffer" })
-vim.keymap.set({ 'n' }, "<leader>fz", tele_builtin.current_buffer_fuzzy_find, { desc = "Buffer Fuzzy Find" })
-vim.keymap.set({ 'n' }, "<leader>f?", tele_builtin.help_tags, { desc = "Find Help" })
-vim.keymap.set({ 'n' }, "<leader>fw", tele_builtin.grep_string, { desc = "Grep Word Under Cursor" })
-vim.keymap.set({ 'n' }, "<leader>fr",
-	-- disabling show_line as it takes up too much horizontal space (just show file location, preview will show line/text)
-	function() tele_builtin.lsp_references({ show_line = false }) end,
-	{ desc = "Find References" })
-vim.keymap.set({ 'n' }, "<leader>fs", tele_builtin.lsp_document_symbols, { desc = "Document Symbols" })
-vim.keymap.set({ 'n' }, "<leader>fS", tele_builtin.lsp_workspace_symbols, { desc = "Workspace Symbols" })
-vim.keymap.set({ 'n' }, "<leader>fq", tele_builtin.diagnostics, { desc = "LSP Diagnostics" })
-vim.keymap.set({ 'n' }, "<leader>f:", tele_builtin.command_history, { desc = "Command History" })
-vim.keymap.set({ 'n' }, "<leader>f/", tele_builtin.search_history, { desc = "Search History" })
-vim.keymap.set({ 'n' }, "<leader>ft", tele_builtin.lsp_type_definitions, { desc = "Goto Type Definition(s)" })
-vim.keymap.set({ 'n' }, "<leader>fd", tele_builtin.lsp_definitions, { desc = "Goto Definition(s)" })
-vim.keymap.set({ 'n' }, "<leader>fi", tele_builtin.lsp_implementations, { desc = "Goto Implementation(s)" })
-vim.keymap.set({ 'n' }, '<leader>f"', tele_builtin.registers, { desc = "Registers" })
-vim.keymap.set({ 'n' }, "<leader>f'", tele_builtin.marks, { desc = "Marks" })
-vim.keymap.set({ 'n' }, "<leader>fG", tele_builtin.git_branches, { desc = "Git Branches" })
-vim.keymap.set({ 'n' }, "<leader>fc", tele_builtin.git_bcommits, { desc = "Buffer Git Commits" })
-vim.keymap.set({ 'n' }, "<leader>fC", tele_builtin.git_commits, { desc = "Git Commits" })
-vim.keymap.set({ 'n' }, "<leader>fe", tele_builtin.git_status, { desc = "Git Status" })
-vim.keymap.set({ 'n' }, "<leader>fo", tele_builtin.git_stash, { desc = "Git Stash" })
-vim.keymap.set({ 'n' }, "<leader>fl", tele_builtin.colorscheme, { desc = "Color Scheme" })
-vim.keymap.set({ 'n' }, "<leader>fj", tele_builtin.jumplist, { desc = "Vim Jumplist" })
-vim.keymap.set({ 'n' }, "<leader>fk", tele_builtin.keymaps, { desc = "Vim Keymaps" })
-vim.keymap.set({ 'n' }, "<leader>fu", tele_builtin.resume, { desc = "Resume Telescope" })
+vim.keymap.set({ 'n' }, "<leader>ff", function() require('fzf-lua').files() end, { desc = "Find File" })
+vim.keymap.set({ 'n' }, "<leader>fF", function() require('fzf-lua').oldfiles() end, { desc = "Previous Files" })
+vim.keymap.set({ 'n' }, "<leader>fg", function() require('fzf-lua').live_grep() end, { desc = "Live Grep" })
+vim.keymap.set({ 'n' }, "<leader>fb", function() require('fzf-lua').buffers() end, { desc = "Find Buffer" })
+vim.keymap.set({ 'n' }, "<leader>fz", function() require('fzf-lua').blines() end, { desc = "Buffer Fuzzy Find" })
+vim.keymap.set({ 'n' }, "<leader>f?", function() require('fzf-lua').helptags() end, { desc = "Find Help" })
+vim.keymap.set({ 'n' }, "<leader>fw", function() require('fzf-lua').grep_cword() end, { desc = "Grep Word Under Cursor" })
+vim.keymap.set({ 'n' }, "<leader>fr", function() require('fzf-lua').lsp_references() end, { desc = "Find References" })
+vim.keymap.set({ 'n' }, "<leader>fs", function() require('fzf-lua').lsp_document_symbols() end,
+	{ desc = "Document Symbols" })
+vim.keymap.set({ 'n' }, "<leader>fS", function() require('fzf-lua').lsp_workspace_symbols() end,
+	{ desc = "Workspace Symbols" })
+vim.keymap.set({ 'n' }, "<leader>fq", function() require('fzf-lua').diagnostics_workspace() end,
+	{ desc = "LSP Diagnostics" })
+vim.keymap.set({ 'n' }, "<leader>f:", function() require('fzf-lua').command_history() end, { desc = "Command History" })
+vim.keymap.set({ 'n' }, "<leader>f/", function() require('fzf-lua').search_history() end, { desc = "Search History" })
+vim.keymap.set({ 'n' }, "<leader>ft", function() require('fzf-lua').lsp_typedefs() end,
+	{ desc = "Goto Type Definition(s)" })
+vim.keymap.set({ 'n' }, "<leader>fd", function() require('fzf-lua').lsp_definitions() end,
+	{ desc = "Goto Definition(s)" })
+vim.keymap.set({ 'n' }, "<leader>fi", function() require('fzf-lua').lsp_implementations() end,
+	{ desc = "Goto Implementation(s)" })
+vim.keymap.set({ 'n' }, '<leader>f"', function() require('fzf-lua').registers() end, { desc = "Registers" })
+vim.keymap.set({ 'n' }, "<leader>f'", function() require('fzf-lua').marks() end, { desc = "Marks" })
+vim.keymap.set({ 'n' }, "<leader>fG", function() require('fzf-lua').git_branches() end, { desc = "Git Branches" })
+vim.keymap.set({ 'n' }, "<leader>fc", function() require('fzf-lua').git_bcommits() end, { desc = "Buffer Git Commits" })
+vim.keymap.set({ 'n' }, "<leader>fC", function() require('fzf-lua').git_commits() end, { desc = "Git Commits" })
+vim.keymap.set({ 'n' }, "<leader>fe", function() require('fzf-lua').git_status() end, { desc = "Git Status" })
+vim.keymap.set({ 'n' }, "<leader>fo", function() require('fzf-lua').git_stash() end, { desc = "Git Stash" })
+vim.keymap.set({ 'n' }, "<leader>fl", function() require('fzf-lua').colorschemes() end, { desc = "Color Scheme" })
+vim.keymap.set({ 'n' }, "<leader>fj", function() require('fzf-lua').jumps() end, { desc = "Vim Jumplist" })
+vim.keymap.set({ 'n' }, "<leader>fk", function() require('fzf-lua').keymaps() end, { desc = "Vim Keymaps" })
+vim.keymap.set({ 'n' }, "<leader>fu", function() require('fzf-lua').resume() end, { desc = "Resume FzfLua" })
 
 -- Code Companion and copilot
 vim.keymap.set({ 'n' }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })
@@ -218,7 +216,7 @@ vim.keymap.set({ "n" }, "<leader>q", "<cmd>tabc<CR>", { desc = "Close Tab" })
 -- Editing actions
 vim.keymap.set({ "n" }, "<leader>er", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 vim.keymap.set({ "n", "x" }, "<leader>ea", vim.lsp.buf.code_action, { desc = "Code Action" })
-vim.keymap.set({ "n", "x" }, "<leader>es", tele_builtin.spell_suggest, { desc = "Spell Suggest" })
+vim.keymap.set({ "n", "x" }, "<leader>es", function() require('fzf-lua').spell_suggest() end, { desc = "Spell Suggest" })
 vim.keymap.set({ "n", "i" }, "<C-Space>", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 -- Misc. LSP

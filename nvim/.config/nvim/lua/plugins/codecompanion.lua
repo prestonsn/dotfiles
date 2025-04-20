@@ -14,18 +14,6 @@ return {
 			strategies = {
 				chat = {
 					adapter = "copilot",
-					tools = {
-						["mcp"] = {
-							callback = function()
-								return require("mcphub.extensions.codecompanion")
-							end,
-							description = "Call tools and resources from the MCP Servers",
-							opts = {
-								-- mcphub configured to require approval so not needed here
-								requires_approval = false,
-							},
-						},
-					},
 				},
 				inline = {
 					adapter = "copilot",

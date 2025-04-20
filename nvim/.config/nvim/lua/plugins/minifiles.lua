@@ -85,6 +85,14 @@ end
 return {
 	'echasnovski/mini.files',
 	lazy = false,
+	keys = {
+		{ '<leader>b', function() require('mini.files').open(vim.api.nvim_buf_get_name(0)) end, desc = 'Browse Files' },
+		{
+			'<leader>B',
+			function() require('mini.files').open() end,
+			desc = 'Browse Files at CWD'
+		},
+	},
 	config = function()
 		vim.api.nvim_create_autocmd('User', {
 			pattern = 'MiniFilesBufferCreate',

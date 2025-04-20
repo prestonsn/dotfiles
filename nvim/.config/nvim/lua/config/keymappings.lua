@@ -12,11 +12,6 @@ vim.keymap.set({ 'n' }, '\\z', function() vim.lsp.inlay_hint.enable(not vim.lsp.
 vim.keymap.set({ 'c' }, '<Up>', "<C-p>", { desc = 'Select previous' })
 vim.keymap.set({ 'c' }, '<Down>', "<C-n>", { desc = 'Select next' })
 
--- mini.files
-vim.keymap.set({ 'n' }, '<leader>b', function() require('mini.files').open() end, { desc = 'Browse Files' })
-vim.keymap.set({ 'n' }, '<leader>B', function() require('mini.files').open(vim.api.nvim_buf_get_name(0)) end,
-	{ desc = 'Browse Files at Buffer' })
-
 vim.keymap.set({ 'n' }, '<leader><f1>', function() vim.cmd.RustLsp('openDocs') end, { desc = 'Open Rust Doc' })
 
 vim.keymap.set({ 'n' }, "<leader>ff", function() require('fzf-lua').files() end, { desc = "Find File" })

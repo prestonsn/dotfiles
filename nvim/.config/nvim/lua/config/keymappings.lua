@@ -144,35 +144,3 @@ vim.keymap.set({ "n" }, "K", function()
 		vim.lsp.buf.hover()
 	end
 end, { desc = "Hover Text" })
-
--- Hop setup
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-
--- mimic the usual f, F, t, T mappings with hop variants
-vim.keymap.set({ "n", "o", "x" }, "f", function() hop.hint_char1({ direction = directions.AFTER_CURSOR }) end,
-	{ desc = "Hop 1Char After" })
-vim.keymap.set({ "n", "o", "x" }, "F", function() hop.hint_char1({ direction = directions.BEFORE_CURSOR }) end,
-	{ desc = "Hop 1Char Before" })
-vim.keymap.set({ "n", "o", "x" }, "t",
-	function() hop.hint_char1({ direction = directions.AFTER_CURSOR, hint_offset = -1 }) end,
-	{ desc = "Hop 1Char After-1" })
-vim.keymap.set({ "n", "o", "x" }, "T",
-	function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, hint_offset = 1 }) end,
-	{ desc = "Hop 1Char Before-1" })
-
--- Hop leader group
--- global line hop
-vim.keymap.set({ "n", "o", "x" }, "<leader>ss", function() hop.hint_lines({ multi_windows = true }) end,
-	{ desc = "Hop Lines Global" })
-vim.keymap.set({ "n", "o", "x" }, "<leader>sd", require('hop-treesitter').hint_nodes, { desc = "Hop Nodes" })
--- hop vertical
-vim.keymap.set({ "n", "o", "x" }, "<leader>sv", function() hop.hint_vertical({ direction = directions.AFTER_CURSOR }) end,
-	{ desc = "Hop Vertical After" })
-vim.keymap.set({ "n", "o", "x" }, "<leader>sV",
-	function() hop.hint_vertical({ direction = directions.BEFORE_CURSOR }) end, { desc = "Hop Vertical Before" })
--- hop to words
-vim.keymap.set({ "n", "o", "x" }, "<leader>sw", function() hop.hint_words({ direction = directions.AFTER_CURSOR }) end,
-	{ desc = "Hop Word After" })
-vim.keymap.set({ "n", "o", "x" }, "<leader>sW", function() hop.hint_words({ direction = directions.BEFORE_CURSOR }) end,
-	{ desc = "Hop Word Before" })

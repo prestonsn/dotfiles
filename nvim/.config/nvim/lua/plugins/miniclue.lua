@@ -75,11 +75,6 @@ return {
 				-- FzfLua
 				{ mode = 'n', keys = '<leader>f',  desc = 'FzfLua' },
 
-				-- Hop
-				{ mode = 'n', keys = '<leader>s',  desc = 'Hop' },
-				{ mode = 'o', keys = '<leader>s',  desc = 'Hop' },
-				{ mode = 'x', keys = '<leader>s',  desc = 'Hop' },
-
 				-- Direct Editing
 				{ mode = 'n', keys = '<leader>e',  desc = 'Editing Actions' },
 				{ mode = 'x', keys = '<leader>e',  desc = 'Editing Actions' },

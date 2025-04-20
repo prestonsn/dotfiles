@@ -107,6 +107,99 @@ vim.keymap.set({ 'n' }, '\\z', function() vim.lsp.inlay_hint.enable(not vim.lsp.
 vim.keymap.set({ 'c' }, '<Up>', "<C-p>", { desc = 'Select previous' })
 vim.keymap.set({ 'c' }, '<Down>', "<C-n>", { desc = 'Select next' })
 
+-- mini.files
+local MiniFiles = require('mini.files')
+vim.keymap.set({ 'n' }, '<leader>b', function() MiniFiles.open() end, { desc = 'Browse Files' })
+vim.keymap.set({ 'n' }, '<leader>B', function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end,
+	{ desc = 'Browse Files at Buffer' })
+-- Set focused directory as current working directory
+local set_cwd = function()
+	local path = (MiniFiles.get_fs_entry() or {}).path
+	if path == nil then return vim.notify('Cursor is not on valid entry') end
+	vim.fn.chdir(vim.fs.dirname(path))
+end
+
+-- Yank in register full path of entry under cursor
+local yank_path = function()
+	local path = (MiniFiles.get_fs_entry() or {}).path
+	if path == nil then return vim.notify('Cursor is not on valid entry') end
+	vim.fn.setreg(vim.v.register, path)
+end
+
+-- Open path with system default handler (useful for non-text files)
+local ui_open = function() vim.ui.open(MiniFiles.get_fs_entry().path) end
+
+local luv = vim.loop
+-- Function to recursively add files in a directory to chat references
+local function traverse_directory(path, chat)
+	local handle, err = luv.fs_scandir(path)
+	if not handle then return print("Error scanning directory: " .. err) end
+
+	while true do
+		local name, type = luv.fs_scandir_next(handle)
+		if not name then break end
+
+		local item_path = path .. "/" .. name
+		if type == "file" then
+			-- add the file to references
+			chat.references:add({
+				id = '<file>' .. item_path .. '</file>',
+				path = item_path,
+				source = "codecompanion.strategies.chat.slash_commands.file",
+				opts = {
+					pinned = false
+				}
+			})
+		elseif type == "directory" then
+			-- recursive call for a subdirectory
+			traverse_directory(item_path, chat)
+		end
+	end
+end
+
+-- Function to add the current file or directory (all files recursively) to Code Companion
+local add_to_code_companion = function()
+	local path = MiniFiles.get_fs_entry().path
+	local codecompanion = require("codecompanion")
+	local chat = codecompanion.last_chat()
+	-- create chat if none exists
+	if (chat == nil) then
+		chat = codecompanion.chat()
+	end
+
+	local attr = luv.fs_stat(path)
+	if attr and attr.type == "directory" then
+		-- Recursively traverse the directory
+		traverse_directory(path, chat)
+	else
+		-- if already added, ignore
+		for _, ref in ipairs(chat.refs) do
+			if ref.path == path then
+				return print("Already added")
+			end
+		end
+		chat.references:add({
+			id = '<file>' .. path .. '</file>',
+			path = path,
+			source = "codecompanion.strategies.chat.slash_commands.file",
+			opts = {
+				pinned = false
+			}
+		})
+	end
+end
+
+vim.api.nvim_create_autocmd('User', {
+	pattern = 'MiniFilesBufferCreate',
+	callback = function(args)
+		local b = args.data.buf_id
+		vim.keymap.set('n', 'g.', set_cwd, { buffer = b, desc = 'Set cwd' })
+		vim.keymap.set('n', 'gX', ui_open, { buffer = b, desc = 'OS open' })
+		vim.keymap.set('n', 'gy', yank_path, { buffer = b, desc = 'Yank path' })
+		vim.keymap.set('n', 'gC', add_to_code_companion, { buffer = b, desc = 'Add to Code Companion' })
+	end,
+})
+
 vim.keymap.set({ 'n' }, '<leader><f1>', function() vim.cmd.RustLsp('openDocs') end, { desc = 'Open Rust Doc' })
 
 vim.keymap.set({ 'n' }, "<leader>ff", function() require('fzf-lua').files() end, { desc = "Find File" })

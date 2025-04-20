@@ -29,6 +29,7 @@ require('mini.indentscope').setup({
 })
 require('mini.bracketed').setup()
 require('mini.ai').setup()
+require('mini.files').setup()
 
 -- NOTE: `guess-indent` plugin will auto match existing file for indent settings so they are left default
 -- smart/auto indent for new lines - seems to give best results but can also be autoindent = true or smartindent = true

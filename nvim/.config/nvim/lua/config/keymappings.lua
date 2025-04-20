@@ -21,6 +21,7 @@ vim.keymap.set({ 'n' }, "<leader>fb", function() require('fzf-lua').buffers() en
 vim.keymap.set({ 'n' }, "<leader>fz", function() require('fzf-lua').blines() end, { desc = "Buffer Fuzzy Find" })
 vim.keymap.set({ 'n' }, "<leader>f?", function() require('fzf-lua').helptags() end, { desc = "Find Help" })
 vim.keymap.set({ 'n' }, "<leader>fw", function() require('fzf-lua').grep_cword() end, { desc = "Grep Word Under Cursor" })
+vim.keymap.set({ 'v' }, "<leader>fv", function() require('fzf-lua').grep_visual() end, { desc = "Grep Visual Selection" })
 vim.keymap.set({ 'n' }, "<leader>fr", function() require('fzf-lua').lsp_references() end, { desc = "Find References" })
 vim.keymap.set({ 'n' }, "<leader>fs", function() require('fzf-lua').lsp_document_symbols() end,
 	{ desc = "Document Symbols" })
@@ -38,15 +39,20 @@ vim.keymap.set({ 'n' }, "<leader>fi", function() require('fzf-lua').lsp_implemen
 	{ desc = "Goto Implementation(s)" })
 vim.keymap.set({ 'n' }, '<leader>f"', function() require('fzf-lua').registers() end, { desc = "Registers" })
 vim.keymap.set({ 'n' }, "<leader>f'", function() require('fzf-lua').marks() end, { desc = "Marks" })
+vim.keymap.set({ 'n' }, "<leader>fl", function() require('fzf-lua').colorschemes() end, { desc = "Color Scheme" })
+vim.keymap.set({ 'n' }, "<leader>fj", function() require('fzf-lua').jumps() end, { desc = "Vim Jumplist" })
+vim.keymap.set({ 'n' }, "<leader>fk", function() require('fzf-lua').keymaps() end, { desc = "Vim Keymaps" })
+vim.keymap.set({ 'n' }, "<leader>fu", function() require('fzf-lua').resume() end, { desc = "Resume FzfLua" })
+vim.keymap.set({ 'n' }, "<leader>f;", function() require('fzf-lua').commands() end, { desc = "Neovim Commands" })
+vim.keymap.set({ 'n' }, "<leader>fQ", function() require('fzf-lua').quickfix() end, { desc = "Quickfix List" })
+vim.keymap.set({ 'n' }, "<leader>fy", function() require('fzf-lua').treesitter() end, { desc = "Treesitter Symbols" })
+
 vim.keymap.set({ 'n' }, "<leader>fG", function() require('fzf-lua').git_branches() end, { desc = "Git Branches" })
 vim.keymap.set({ 'n' }, "<leader>fc", function() require('fzf-lua').git_bcommits() end, { desc = "Buffer Git Commits" })
 vim.keymap.set({ 'n' }, "<leader>fC", function() require('fzf-lua').git_commits() end, { desc = "Git Commits" })
 vim.keymap.set({ 'n' }, "<leader>fe", function() require('fzf-lua').git_status() end, { desc = "Git Status" })
 vim.keymap.set({ 'n' }, "<leader>fo", function() require('fzf-lua').git_stash() end, { desc = "Git Stash" })
-vim.keymap.set({ 'n' }, "<leader>fl", function() require('fzf-lua').colorschemes() end, { desc = "Color Scheme" })
-vim.keymap.set({ 'n' }, "<leader>fj", function() require('fzf-lua').jumps() end, { desc = "Vim Jumplist" })
-vim.keymap.set({ 'n' }, "<leader>fk", function() require('fzf-lua').keymaps() end, { desc = "Vim Keymaps" })
-vim.keymap.set({ 'n' }, "<leader>fu", function() require('fzf-lua').resume() end, { desc = "Resume FzfLua" })
+
 
 -- Code Companion and copilot
 vim.keymap.set({ 'n' }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })

@@ -123,7 +123,7 @@ vim.keymap.set({ "n" }, "<leader>q", "<cmd>tabc<CR>", { desc = "Close Tab" })
 
 -- Editing actions
 vim.keymap.set({ "n" }, "<leader>er", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-vim.keymap.set({ "n", "x" }, "<leader>ea", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set({ "n", "x" }, "<leader>ea", function() require('fzf-lua').lsp_code_actions() end, { desc = "Code Action" })
 vim.keymap.set({ "n", "x" }, "<leader>es", function() require('fzf-lua').spell_suggest() end, { desc = "Spell Suggest" })
 vim.keymap.set({ "n", "i" }, "<C-Space>", vim.lsp.buf.code_action, { desc = "Code Action" })
 

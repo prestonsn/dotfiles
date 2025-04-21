@@ -39,7 +39,7 @@ local function traverse_directory(path, chat)
 				path = item_path,
 				source = "codecompanion.strategies.chat.slash_commands.file",
 				opts = {
-					pinned = false
+					pinned = true
 				}
 			})
 		elseif type == "directory" then
@@ -76,7 +76,7 @@ local add_to_code_companion = function()
 			path = path,
 			source = "codecompanion.strategies.chat.slash_commands.file",
 			opts = {
-				pinned = false
+				pinned = true
 			}
 		})
 	end

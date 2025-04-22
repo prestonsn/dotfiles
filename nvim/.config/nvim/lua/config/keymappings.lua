@@ -1,3 +1,9 @@
+-- Keeping the cursor centered
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll downwards' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll upwards' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next result' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result' })
+
 -- Larger increments for window resizing
 vim.keymap.set({ 'n' }, "<C-w><", "5<C-w><", { noremap = true, desc = "Decrease width" })
 vim.keymap.set({ 'n' }, "<C-w>>", "5<C-w>>", { noremap = true, desc = "Increase width" })

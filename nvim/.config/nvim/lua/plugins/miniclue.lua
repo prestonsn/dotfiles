@@ -73,22 +73,25 @@ return {
 				miniclue.gen_clues.z(),
 
 				-- FzfLua
-				{ mode = 'n', keys = '<leader>f',  desc = 'FzfLua' },
+				{ mode = 'n', keys = '<leader>f',  desc = '+FzfLua' },
 
 				-- Direct Editing
-				{ mode = 'n', keys = '<leader>e',  desc = 'Editing Actions' },
-				{ mode = 'x', keys = '<leader>e',  desc = 'Editing Actions' },
+				{ mode = 'n', keys = '<leader>e',  desc = '+Editing Actions' },
+				{ mode = 'x', keys = '<leader>e',  desc = '+Editing Actions' },
+
+				-- Quckfix
+				{ mode = 'n', keys = '<leader>x',  desc = '+Loclist/Quickfix' },
 
 				-- Git
-				{ mode = 'n', keys = '<leader>g',  desc = 'Git' },
+				{ mode = 'n', keys = '<leader>g',  desc = '+Git' },
 				{ mode = 'n', keys = '<leader>gn', postkeys = '<leader>g' },
 				{ mode = 'n', keys = '<leader>gp', postkeys = '<leader>g' },
 
 				-- Code Companion
-				{ mode = 'n', keys = '<leader>c',  desc = 'Code Companion' },
+				{ mode = 'n', keys = '<leader>c',  desc = '+Code Companion' },
 
 				-- Iron Repl
-				{ mode = 'n', keys = '<leader>r',  desc = 'Iron Repl' },
+				{ mode = 'n', keys = '<leader>r',  desc = '+Iron repl' },
 			},
 
 		}

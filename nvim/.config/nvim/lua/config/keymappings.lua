@@ -1,3 +1,8 @@
+-- Floating terminal.
+vim.keymap.set({ 'n', 't' }, '<leader>z', function()
+	require('float_term').float_term('zsh', { cwd = vim.fn.expand '%:p:h' })
+end, { desc = 'Toggle floating terminal' })
+
 -- Keeping the cursor centered
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll downwards' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll upwards' })

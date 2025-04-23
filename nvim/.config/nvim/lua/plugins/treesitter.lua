@@ -5,11 +5,17 @@ return {
 			highlight = {
 				enable = true,
 			}, ensure_installed = {
-			"vimdoc",
-			"luadoc",
-			"vim",
+			"bash",
+			"c",
+			"cpp",
+			"go",
 			"lua",
+			"luadoc",
 			"markdown",
+			"markdown_inline",
+			"rust",
+			"vim",
+			"vimdoc",
 		}
 		}
 	end,

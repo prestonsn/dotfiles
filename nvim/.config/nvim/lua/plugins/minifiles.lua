@@ -7,11 +7,15 @@ local set_cwd = function()
 	minifiles.trim_left()
 end
 
--- Yank in register full path of entry under cursor
-local yank_path = function()
+--- Yank in register path of entry under cursor.
+---@param rel_path boolean Yank relative path if true, full path otherwise.
+local yank_path = function(rel_path)
 	local minifiles = require('mini.files')
 	local path = (minifiles.get_fs_entry() or {}).path
 	if path == nil then return vim.notify('Cursor is not on valid entry') end
+	if rel_path then
+		path = vim.fn.fnamemodify(path, ':.')
+	end
 	vim.fn.setreg(vim.v.register, path)
 end
 
@@ -100,7 +104,10 @@ return {
 				local b = args.data.buf_id
 				vim.keymap.set('n', 'g.', set_cwd, { buffer = b, desc = 'Set cwd' })
 				vim.keymap.set('n', 'gX', ui_open, { buffer = b, desc = 'OS open' })
-				vim.keymap.set('n', 'gy', yank_path, { buffer = b, desc = 'Yank path' })
+				vim.keymap.set('n', 'gy', function() yank_path(true) end,
+					{ buffer = b, desc = 'Yank relative path' })
+				vim.keymap.set('n', 'gY', function() yank_path(false) end,
+					{ buffer = b, desc = 'Yank full path' })
 				vim.keymap.set('n', 'gC', add_to_code_companion,
 					{ buffer = b, desc = 'Add to Code Companion' })
 			end,

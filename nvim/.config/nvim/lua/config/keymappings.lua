@@ -1,8 +1,3 @@
--- Floating terminal.
-vim.keymap.set({ 'n', 't' }, '<leader>z', function()
-	require('float_term').float_term('zsh', { cwd = vim.fn.expand '%:p:h' })
-end, { desc = 'Toggle floating terminal' })
-
 -- Keeping the cursor centered
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll downwards' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll upwards' })
@@ -113,6 +108,11 @@ end, { desc = "Send Code Block" })
 vim.keymap.set({ 'n', 'v' }, "<leader>v", require('lua_utils').exec_lua, { desc = "Execute Lua" })
 
 -- Terminal
+-- Floating terminal.
+vim.keymap.set({ 'n' }, '<leader>z', function()
+	require('float_term').float_term('zsh', { cwd = vim.fn.expand '%:p:h' })
+end, { desc = 'Toggle floating terminal' })
+
 -- Exit terminal mode with ctrl-w hjkl buffer navigation
 vim.keymap.set({ "t" }, "<C-w>h", "<C-\\><C-n><C-w>h", { desc = "Focus left" })
 vim.keymap.set({ "t" }, "<C-w>j", "<C-\\><C-n><C-w>j", { desc = "Focus down" })
@@ -123,14 +123,13 @@ vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- Close window while in terminal mode
 vim.keymap.set({ "t" }, "<C-w>q", "<C-\\><C-n><C-w>q", { desc = "Quit current" })
 
--- Enter terminal mode immediately
--- not sure if I like it, disabled for now
--- vim.api.nvim_create_autocmd({"BufWinEnter", "WinEnter"}, {
---   pattern = {"term://*"},
---   callback = function()
---     vim.cmd("startinsert")
---   end
--- })
+-- Enter insert mode immediately when entering terminal window
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
+	pattern = { "term://*" },
+	callback = function()
+		vim.cmd("startinsert")
+	end
+})
 
 -- Tab setup
 vim.keymap.set({ "n" }, "<leader>h", "<cmd>tabprevious<CR>", { desc = "Next Tab" })

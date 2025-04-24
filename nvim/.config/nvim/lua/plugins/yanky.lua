@@ -11,12 +11,12 @@ return {
 		}
 	end,
 	keys = {
-		{ 'p',  '<Plug>(YankyPutAfter)',          mode = { 'n', 'x' },                         desc = 'Put yanked text after cursor' },
-		{ 'P',  '<Plug>(YankyPutBefore)',         mode = { 'n', 'x' },                         desc = 'Put yanked text before cursor' },
-		{ '=p', '<Plug>(YankyPutAfterLinewise)',  desc = 'Put yanked text in line below' },
-		{ '=P', '<Plug>(YankyPutBeforeLinewise)', desc = 'Put yanked text in line above' },
-		{ '[y', '<Plug>(YankyCycleForward)',      desc = 'Cycle forward through yank history' },
-		{ ']y', '<Plug>(YankyCycleBackward)',     desc = 'Cycle backward through yank history' },
-		{ 'y',  '<Plug>(YankyYank)',              mode = { 'n', 'x' },                         desc = 'Yanky yank' },
+		{ 'p',     '<Plug>(YankyPutAfter)',          mode = { 'n', 'x' },                     desc = 'Putyankedtextaftercursor' },
+		{ 'P',     '<Plug>(YankyPutBefore)',         mode = { 'n', 'x' },                     desc = 'Putyankedtextbeforecursor' },
+		{ '=p',    '<Plug>(YankyPutAfterLinewise)',  desc = 'Putyankedtextinlinebelow' },
+		{ '=P',    '<Plug>(YankyPutBeforeLinewise)', desc = 'Putyankedtextinlineabove' },
+		{ '<c-n>', '<Plug>(YankyCycleForward)',      desc = 'Cycleforwardthroughyankhistory' },
+		{ '<c-p>', '<Plug>(YankyCycleBackward)',     desc = 'Cyclebackwardthroughyankhistory' },
+		{ 'y',     '<Plug>(YankyYank)',              mode = { 'n', 'x' },                     desc = 'Yankyyank' },
 	},
 }

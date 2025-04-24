@@ -113,6 +113,9 @@ vim.keymap.set({ 'n' }, '<leader>z', function()
 	require('float_term').float_term('zsh', { cwd = vim.fn.expand '%:p:h' })
 end, { desc = 'Toggle floating terminal' })
 
+-- Ensure ctrl-c sends SIGINT in terminal mode
+vim.keymap.set('t', '<C-c>', "\x03", { desc = "Send SIGINT" })
+
 -- Exit terminal mode with ctrl-w hjkl buffer navigation
 vim.keymap.set({ "t" }, "<C-w>h", "<C-\\><C-n><C-w>h", { desc = "Focus left" })
 vim.keymap.set({ "t" }, "<C-w>j", "<C-\\><C-n><C-w>j", { desc = "Focus down" })

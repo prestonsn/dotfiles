@@ -72,12 +72,15 @@ return {
 				miniclue.gen_clues.windows({ submode_resize = true }),
 				miniclue.gen_clues.z(),
 
+				-- Buffers
+				{ mode = 'n', keys = '<leader>b',  desc = '+Buffers' },
+
 				-- FzfLua
 				{ mode = 'n', keys = '<leader>f',  desc = '+FzfLua' },
 
 				-- Direct Editing
-				{ mode = 'n', keys = '<leader>e',  desc = '+Editing Actions' },
-				{ mode = 'x', keys = '<leader>e',  desc = '+Editing Actions' },
+				{ mode = 'n', keys = '<leader>v',  desc = '+Editing Actions' },
+				{ mode = 'x', keys = '<leader>v',  desc = '+Editing Actions' },
 
 				-- Quckfix
 				{ mode = 'n', keys = '<leader>x',  desc = '+Loclist/Quickfix' },

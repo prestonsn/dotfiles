@@ -4,6 +4,10 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
+	keys = {
+		{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", mode = { 'n' },      desc = "Code Companion Chat" },
+		{ "<leader>ca", "<cmd>CodeCompanionActions<CR>",     mode = { 'n', 'v' }, desc = "Actions" }
+	},
 	config = function()
 		require("codecompanion").setup({
 			display = {

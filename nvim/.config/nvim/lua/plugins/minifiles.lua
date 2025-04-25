@@ -90,9 +90,9 @@ return {
 	'echasnovski/mini.files',
 	lazy = false,
 	keys = {
-		{ '<leader>b', function() require('mini.files').open(vim.api.nvim_buf_get_name(0)) end, desc = 'Browse Files' },
+		{ '<leader>e', function() require('mini.files').open(vim.api.nvim_buf_get_name(0)) end, desc = 'Browse Files' },
 		{
-			'<leader>B',
+			'<leader>E',
 			function() require('mini.files').open() end,
 			desc = 'Browse Files at CWD'
 		},

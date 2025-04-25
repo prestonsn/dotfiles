@@ -73,12 +73,6 @@ vim.keymap.set({ 'n' }, "<leader>fe", function() require('fzf-lua').git_status()
 vim.keymap.set({ 'n' }, "<leader>fo", function() require('fzf-lua').git_stash() end, { desc = "Git Stash" })
 
 
--- Code Companion and copilot
-vim.keymap.set({ 'n' }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })
-vim.keymap.set({ 'n', 'v' }, "<leader>ca", "<cmd>CodeCompanionActions<CR>", { desc = "Actions" })
-vim.keymap.set({ 'n', 'v' }, "<leader>cp", "<cmd>Copilot panel<CR>", { desc = "Copilot Suggestions Panel" })
-vim.keymap.set({ 'i' }, '<C-f>', '<Plug>(copilot-next)', { desc = "Next Copilot Suggestion" })
-
 
 -- Iron Repl
 vim.keymap.set({ 'n' }, "<leader>rr", "<cmd>IronRepl<CR>", { desc = "Toggle Repl" })
@@ -105,7 +99,7 @@ end, { desc = "Send Code Block" })
 
 
 -- Lua utils
-vim.keymap.set({ 'n', 'v' }, "<leader>v", require('lua_utils').exec_lua, { desc = "Execute Lua" })
+vim.keymap.set({ 'n', 'v' }, "<leader>t", require('lua_utils').exec_lua, { desc = "Execute Lua" })
 
 -- Terminal
 -- Floating terminal.
@@ -148,9 +142,9 @@ vim.keymap.set({ "n" }, "<leader>n", "<cmd>tab split<CR>", { desc = "New Tab" })
 vim.keymap.set({ "n" }, "<leader>q", "<cmd>tabc<CR>", { desc = "Close Tab" })
 
 -- Editing actions
-vim.keymap.set({ "n" }, "<leader>er", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-vim.keymap.set({ "n", "x" }, "<leader>ea", function() require('fzf-lua').lsp_code_actions() end, { desc = "Code Action" })
-vim.keymap.set({ "n", "x" }, "<leader>es", function() require('fzf-lua').spell_suggest() end, { desc = "Spell Suggest" })
+vim.keymap.set({ "n" }, "<leader>vr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+vim.keymap.set({ "n", "x" }, "<leader>va", function() require('fzf-lua').lsp_code_actions() end, { desc = "Code Action" })
+vim.keymap.set({ "n", "x" }, "<leader>vs", function() require('fzf-lua').spell_suggest() end, { desc = "Spell Suggest" })
 vim.keymap.set({ "n", "i" }, "<C-Space>", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 -- Misc. LSP

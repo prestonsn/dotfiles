@@ -16,7 +16,7 @@ return {
 		signature = { enabled = true },
 		completion = {
 			list = {
-				selection = { preselect = false, auto_insert = false },
+				selection = { preselect = false, auto_insert = true },
 				-- Show more items than default 10 so it's easier to browse apis.
 				max_items = 100,
 			},

@@ -65,12 +65,6 @@ vim.keymap.set({ "n" }, "\\f", function()
     vim.notify(string.format("%s formatting...", vim.g.autoformat and "Enabling" or "Disabling"), vim.log.levels.INFO)
 end, { desc = "Toggle formatting" })
 
--- Ctrl hjkl for window navigation
-vim.keymap.set({ "n" }, "<C-h>", "<C-w>h", { desc = "Focus left" })
-vim.keymap.set({ "n" }, "<C-j>", "<C-w>j", { desc = "Focus down" })
-vim.keymap.set({ "n" }, "<C-k>", "<C-w>k", { desc = "Focus up" })
-vim.keymap.set({ "n" }, "<C-l>", "<C-w>l", { desc = "Focus right" })
-
 -- Larger increments for window resizing
 vim.keymap.set({ "n" }, "<C-w><", "5<C-w><", { noremap = true, desc = "Decrease width" })
 vim.keymap.set({ "n" }, "<C-w>>", "5<C-w>>", { noremap = true, desc = "Increase width" })

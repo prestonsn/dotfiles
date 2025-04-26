@@ -14,15 +14,17 @@ local settings = require('config.settings')
 local o        = vim.opt
 
 -- File handling
-o.updatetime   = 750                 -- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
-o.undofile     = true                -- Enable persistent undo (see also `:h undodir`)
-o.backup       = false               -- Don't store backup while overwriting the file
-o.writebackup  = false               -- Don't store backup while overwriting the file
+o.updatetime   = 750   -- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
+o.undofile     = true  -- Enable persistent undo (see also `:h undodir`)
+o.backup       = false -- Don't store backup while overwriting the file
+o.writebackup  = false -- Don't store backup while overwriting the file
 
+-- Misc
 o.mouse        = 'a'                 -- Enable mouse for all available modes
 vim.cmd('filetype plugin indent on') -- Enable all filetype plugins
 o.termguicolors = true               -- Enable gui colors
-
+o.splitkeep     = 'screen'           -- Reduce scroll during window split
+o.shortmess:append('WcC')            -- Reduce command line messages
 
 -- Appearance
 o.breakindent   = true    -- Indent wrapped lines to match line start
@@ -51,9 +53,6 @@ o.smartindent   = true               -- Make indenting smart (NOTE: `guess-inden
 o.completeopt   = 'menuone,noselect' -- Customize completions
 o.virtualedit   = 'block'            -- Allow going past the end of line in visual block mode
 o.formatoptions = 'qjl1'             -- Don't autoformat comments
-
-o.splitkeep     = 'screen'           -- Reduce scroll during window split
-o.shortmess:append('WcC')            -- Reduce command line messages
 
 -- colorscheme
 vim.cmd.colorscheme(settings.colorscheme)

@@ -30,47 +30,6 @@ vim.keymap.set({ 'c' }, '<Down>', "<C-n>", { desc = 'Select next' })
 
 vim.keymap.set({ 'n' }, '<leader><f1>', function() vim.cmd.RustLsp('openDocs') end, { desc = 'Open Rust Doc' })
 
-vim.keymap.set({ 'n' }, "<leader>ff", function() require('fzf-lua').files() end, { desc = "Find File" })
-vim.keymap.set({ 'n' }, "<leader>fF", function() require('fzf-lua').oldfiles() end, { desc = "Previous Files" })
-vim.keymap.set({ 'n' }, "<leader>fg", function() require('fzf-lua').live_grep() end, { desc = "Live Grep" })
-vim.keymap.set({ 'n' }, "<leader>fb", function() require('fzf-lua').buffers() end, { desc = "Find Buffer" })
-vim.keymap.set({ 'n' }, "<leader>fz", function() require('fzf-lua').blines() end, { desc = "Buffer Fuzzy Find" })
-vim.keymap.set({ 'n' }, "<leader>f?", function() require('fzf-lua').helptags() end, { desc = "Find Help" })
-vim.keymap.set({ 'n' }, "<leader>fw", function() require('fzf-lua').grep_cword() end, { desc = "Grep Word Under Cursor" })
-vim.keymap.set({ 'v' }, "<leader>fv", function() require('fzf-lua').grep_visual() end, { desc = "Grep Visual Selection" })
-vim.keymap.set({ 'n' }, "<leader>fr", function() require('fzf-lua').lsp_references() end, { desc = "Find References" })
-vim.keymap.set({ 'n' }, "<leader>fs", function() require('fzf-lua').lsp_document_symbols() end,
-	{ desc = "Document Symbols" })
-vim.keymap.set({ 'n' }, "<leader>fS", function() require('fzf-lua').lsp_workspace_symbols() end,
-	{ desc = "Workspace Symbols" })
-vim.keymap.set({ 'n' }, "<leader>fq", function() require('fzf-lua').diagnostics_workspace() end,
-	{ desc = "LSP Diagnostics" })
-vim.keymap.set({ 'n' }, "<leader>f:", function() require('fzf-lua').command_history() end, { desc = "Command History" })
-vim.keymap.set({ 'n' }, "<leader>f/", function() require('fzf-lua').search_history() end, { desc = "Search History" })
-vim.keymap.set({ 'n' }, "<leader>ft", function() require('fzf-lua').lsp_typedefs() end,
-	{ desc = "Goto Type Definition(s)" })
-vim.keymap.set({ 'n' }, "<leader>fd", function() require('fzf-lua').lsp_definitions() end,
-	{ desc = "Goto Definition(s)" })
-vim.keymap.set({ 'n' }, "<leader>fi", function() require('fzf-lua').lsp_implementations() end,
-	{ desc = "Goto Implementation(s)" })
-vim.keymap.set({ 'n' }, '<leader>f"', function() require('fzf-lua').registers() end, { desc = "Registers" })
-vim.keymap.set({ 'n' }, "<leader>f'", function() require('fzf-lua').marks() end, { desc = "Marks" })
-vim.keymap.set({ 'n' }, "<leader>fl", function() require('fzf-lua').colorschemes() end, { desc = "Color Scheme" })
-vim.keymap.set({ 'n' }, "<leader>fj", function() require('fzf-lua').jumps() end, { desc = "Vim Jumplist" })
-vim.keymap.set({ 'n' }, "<leader>fk", function() require('fzf-lua').keymaps() end, { desc = "Vim Keymaps" })
-vim.keymap.set({ 'n' }, "<leader>fu", function() require('fzf-lua').resume() end, { desc = "Resume FzfLua" })
-vim.keymap.set({ 'n' }, "<leader>f;", function() require('fzf-lua').commands() end, { desc = "Neovim Commands" })
-vim.keymap.set({ 'n' }, "<leader>fQ", function() require('fzf-lua').quickfix() end, { desc = "Quickfix List" })
-vim.keymap.set({ 'n' }, "<leader>fy", function() require('fzf-lua').treesitter() end, { desc = "Treesitter Symbols" })
-
-vim.keymap.set({ 'n' }, "<leader>fG", function() require('fzf-lua').git_branches() end, { desc = "Git Branches" })
-vim.keymap.set({ 'n' }, "<leader>fc", function() require('fzf-lua').git_bcommits() end, { desc = "Buffer Git Commits" })
-vim.keymap.set({ 'n' }, "<leader>fC", function() require('fzf-lua').git_commits() end, { desc = "Git Commits" })
-vim.keymap.set({ 'n' }, "<leader>fe", function() require('fzf-lua').git_status() end, { desc = "Git Status" })
-vim.keymap.set({ 'n' }, "<leader>fo", function() require('fzf-lua').git_stash() end, { desc = "Git Stash" })
-
-
-
 -- Iron Repl
 vim.keymap.set({ 'n' }, "<leader>rr", "<cmd>IronRepl<CR>", { desc = "Toggle Repl" })
 vim.keymap.set({ 'n' }, "<leader>rz", "<cmd>IronRestart<CR>", { desc = "Restart Repl" })
@@ -140,10 +99,8 @@ vim.keymap.set({ "n" }, "<leader>5", "<cmd>5tabnext<CR>", { desc = "Tab 5" })
 vim.keymap.set({ "n" }, "<leader>n", "<cmd>tab split<CR>", { desc = "New Tab" })
 vim.keymap.set({ "n" }, "<leader>q", "<cmd>tabc<CR>", { desc = "Close Tab" })
 
--- Editing actions
+-- LSP edit actions
 vim.keymap.set({ "n" }, "<leader>vr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-vim.keymap.set({ "n", "x" }, "<leader>va", function() require('fzf-lua').lsp_code_actions() end, { desc = "Code Action" })
-vim.keymap.set({ "n", "x" }, "<leader>vs", function() require('fzf-lua').spell_suggest() end, { desc = "Spell Suggest" })
 vim.keymap.set({ "n", "i" }, "<C-Space>", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 -- Misc. LSP

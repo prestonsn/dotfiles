@@ -14,7 +14,7 @@ return {
             less = { "prettier" },
             lua = { "stylua" },
             markdown = { "prettier" },
-            rust = { name = "rust_analyzer", lsp_format = "prefer" },
+            rust = { lsp_format = "prefer" },
             scss = { "prettier" },
             sh = { "shfmt" },
             typescript = { "prettier", name = "dprint", lsp_format = "fallback" },

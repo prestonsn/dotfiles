@@ -42,7 +42,6 @@ vim.lsp.inlay_hint.enable(false) -- Turn off lsp inlay hints by default
 o.signcolumn = "yes" -- Always show sign column (otherwise it will shift text)
 o.fillchars = "eob: " -- Don't show `~` outside of buffer
 o.pumheight = 10 -- Keep popup menus from being too tall (limit to 10 items)
-o.winblend = 10 -- Make floating windows slightly transparent
 
 -- Editing
 o.ignorecase = true -- Ignore case when searching (use `\C` to force not doing that)

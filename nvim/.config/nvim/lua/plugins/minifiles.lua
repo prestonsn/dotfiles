@@ -7,6 +7,33 @@ local set_cwd = function()
 	minifiles.trim_left()
 end
 
+local function map_split(buf_id, lhs, direction)
+	local minifiles = require('mini.files')
+
+	local function rhs()
+		local window = minifiles.get_explorer_state().target_window
+
+		-- Noop if the explorer isn't open or the cursor is on a directory.
+		if window == nil or minifiles.get_fs_entry().fs_type == 'directory' then
+			return
+		end
+
+		-- Make a new window and set it as target.
+		local new_target_window
+		vim.api.nvim_win_call(window, function()
+			vim.cmd(direction .. ' split')
+			new_target_window = vim.api.nvim_get_current_win()
+		end)
+
+		minifiles.set_target_window(new_target_window)
+
+		-- Go in and close the explorer.
+		minifiles.go_in { close_on_file = true }
+	end
+
+	vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = 'Split ' .. string.sub(direction, 12) })
+end
+
 --- Yank in register path of entry under cursor.
 ---@param rel_path boolean Yank relative path if true, full path otherwise.
 local yank_path = function(rel_path)
@@ -101,15 +128,17 @@ return {
 		vim.api.nvim_create_autocmd('User', {
 			pattern = 'MiniFilesBufferCreate',
 			callback = function(args)
-				local b = args.data.buf_id
-				vim.keymap.set('n', 'g.', set_cwd, { buffer = b, desc = 'Set cwd' })
-				vim.keymap.set('n', 'gX', ui_open, { buffer = b, desc = 'OS open' })
+				local buf_id = args.data.buf_id
+				vim.keymap.set('n', 'g.', set_cwd, { buffer = buf_id, desc = 'Set cwd' })
+				vim.keymap.set('n', 'gX', ui_open, { buffer = buf_id, desc = 'OS open' })
 				vim.keymap.set('n', 'gy', function() yank_path(true) end,
-					{ buffer = b, desc = 'Yank relative path' })
+					{ buffer = buf_id, desc = 'Yank relative path' })
 				vim.keymap.set('n', 'gY', function() yank_path(false) end,
-					{ buffer = b, desc = 'Yank full path' })
+					{ buffer = buf_id, desc = 'Yank full path' })
 				vim.keymap.set('n', 'gC', add_to_code_companion,
-					{ buffer = b, desc = 'Add to Code Companion' })
+					{ buffer = buf_id, desc = 'Add to Code Companion' })
+				map_split(buf_id, '<C-w>s', 'belowright horizontal')
+				map_split(buf_id, '<C-w>v', 'belowright vertical')
 			end,
 		})
 	end,

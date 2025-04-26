@@ -15,6 +15,10 @@ return {
 		},
 		signature = { enabled = true },
 		completion = {
+			accept = {
+				-- Disable as it seems to cause some issues (notably pressing enter on /help for codecompanion).
+				dot_repeat = false,
+			},
 			list = {
 				selection = { preselect = false, auto_insert = true },
 				-- Show more items than default 10 so it's easier to browse apis.

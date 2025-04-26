@@ -27,16 +27,18 @@ o.splitkeep     = 'screen'           -- Reduce scroll during window split
 o.shortmess:append('WcC')            -- Reduce command line messages
 
 -- Appearance
-o.breakindent   = true    -- Indent wrapped lines to match line start
-o.cursorline    = true    -- Highlight current line
-o.linebreak     = true    -- Wrap long lines at 'breakat' (if 'wrap' is set)
-o.number        = true    -- Show line numbers
-o.splitbelow    = true    -- Horizontal splits will be below
-o.splitright    = true    -- Vertical splits will be to the right
+o.breakindent = true             -- Indent wrapped lines to match line start
+o.cursorline  = true             -- Highlight current line
+o.linebreak   = true             -- Wrap long lines at 'breakat' (if 'wrap' is set)
+o.number      = true             -- Show line numbers
+o.splitbelow  = true             -- Horizontal splits will be below
+o.splitright  = true             -- Vertical splits will be to the right
 
-o.ruler         = false   -- Don't show cursor position in command line
-o.showmode      = false   -- Don't show mode in command line
-o.wrap          = false   -- Display long lines as just one line
+o.ruler       = false            -- Don't show cursor position in command line
+o.showmode    = false            -- Don't show mode in command line
+o.wrap        = false            -- Display long lines as just one line
+vim.lsp.inlay_hint.enable(false) -- Turn off lsp inlay hints by default
+
 
 o.signcolumn    = 'yes'   -- Always show sign column (otherwise it will shift text)
 o.fillchars     = 'eob: ' -- Don't show `~` outside of buffer
@@ -166,22 +168,6 @@ vim.g.rustaceanvim = {
 	dap = {
 	},
 }
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("lsp", { clear = true }),
-	callback = function(args)
-		-- lsp format on save
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = args.buf,
-			callback = function()
-				vim.lsp.buf.format { async = false, id = args.data.client_id }
-			end,
-		})
-	end
-})
-
--- Turn off lsp inlay hints by default
-vim.lsp.inlay_hint.enable(false)
 
 -- Status line setup
 require('lualine').setup {

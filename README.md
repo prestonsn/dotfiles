@@ -11,7 +11,6 @@ stow tmux
 # etc., `stow {package}` for each one you want to install
 ```
 
-
 ## Tools Notes
 
 - ghostty terminal with Zed Mono Nerd Font

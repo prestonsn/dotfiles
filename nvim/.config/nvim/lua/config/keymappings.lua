@@ -41,8 +41,22 @@ vim.keymap.set({ 'n' }, '\\h',
 	"<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? '  ' : 'no') . 'hlsearch'<CR>",
 	{ desc = "Toggle 'hlsearch'" })
 vim.keymap.set({ 'n' }, '\\w', "<Cmd>setlocal wrap! wrap?<CR>", { desc = "Toggle 'wrap'" })
-vim.keymap.set({ 'n' }, '\\d', function() vim.diagnostic.enable(vim.diagnostic.is_enabled()) end,
+
+vim.keymap.set({ 'n' }, '\\d', function()
+		vim.diagnostic.enable(vim.diagnostic.is_enabled())
+		vim.notify(string.format('%s diagnostics...', vim.diagnostic.is_enabled() and 'Enabling' or 'Disabling'),
+			vim.log.levels.INFO)
+	end,
 	{ desc = "Toggle diagnostic" })
+
+
+vim.keymap.set({ 'n' }, '\\f',
+	function()
+		vim.g.autoformat = not vim.g.autoformat
+		vim.notify(string.format('%s formatting...', vim.g.autoformat and 'Enabling' or 'Disabling'),
+			vim.log.levels.INFO)
+	end,
+	{ desc = "Toggle formatting" })
 
 -- Ctrl hjkl for window navigation
 vim.keymap.set({ 'n' }, "<C-h>", "<C-w>h", { desc = "Focus left" })

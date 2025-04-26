@@ -128,7 +128,15 @@ return {
         {
             "<leader>e",
             function()
-                require("mini.files").open(vim.api.nvim_buf_get_name(0))
+                local bufname = vim.api.nvim_buf_get_name(0)
+                local path = vim.fn.fnamemodify(bufname, ":p")
+
+                -- Open at CWD if the buffer isn't valid.
+                if path and vim.uv.fs_stat(path) then
+                    require("mini.files").open(bufname, false)
+                else
+                    require("mini.files").open()
+                end
             end,
             desc = "Browse Files",
         },

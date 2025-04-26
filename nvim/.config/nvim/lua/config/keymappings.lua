@@ -125,8 +125,8 @@ vim.keymap.set({ "t" }, "<C-w>j", "<C-\\><C-n><C-w>j", { desc = "Focus down" })
 vim.keymap.set({ "t" }, "<C-w>k", "<C-\\><C-n><C-w>k", { desc = "Focus up" })
 vim.keymap.set({ "t" }, "<C-w>l", "<C-\\><C-n><C-w>l", { desc = "Focus right" })
 
--- Exit terminal mode with ctrl-w w (not using escape so that it still works with the terminal)
-vim.keymap.set({ "t" }, "<C-w>w", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- Exit terminal mode with ctrl-w <Esc> (not using escape so that it still sends <Esc> to terminal)
+vim.keymap.set({ "t" }, "<C-w><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Close window while in terminal mode
 vim.keymap.set({ "t" }, "<C-w>q", "<C-\\><C-n><C-w>q", { desc = "Quit current" })

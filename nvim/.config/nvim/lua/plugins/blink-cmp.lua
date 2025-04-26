@@ -1,7 +1,6 @@
 -- Auto-completion:
 return {
 	'saghen/blink.cmp',
-	dependencies = 'LuaSnip',
 	build = 'cargo +nightly build --release',
 	event = 'InsertEnter',
 	opts = {
@@ -33,7 +32,6 @@ return {
 				},
 			},
 		},
-		snippets = { preset = 'luasnip' },
 		-- Disable command line completion:
 		cmdline = { enabled = false },
 		sources = {
@@ -45,9 +43,6 @@ return {
 				if ok and node then
 					if not vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
 						table.insert(sources, 'path')
-					end
-					if node:type() ~= 'string' then
-						table.insert(sources, 'snippets')
 					end
 				end
 

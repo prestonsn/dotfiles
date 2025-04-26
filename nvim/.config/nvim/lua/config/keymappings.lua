@@ -8,14 +8,11 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result' })
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
--- <esc> to exit snippet jumps and clear highlight search
+-- <esc> also clear highlight search
 vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
-	if require('luasnip').expand_or_jumpable() then
-		require('luasnip').unlink_current()
-	end
 	vim.cmd 'noh'
 	return '<esc>'
-end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
+end, { desc = 'Escape and clear hlsearch', expr = true })
 
 -- Larger increments for window resizing
 vim.keymap.set({ 'n' }, "<C-w><", "5<C-w><", { noremap = true, desc = "Decrease width" })

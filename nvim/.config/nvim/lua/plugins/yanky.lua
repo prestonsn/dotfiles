@@ -26,7 +26,7 @@ return {
         },
         -- Paste in Visual with `P` to not copy selected text (`:h v_P`)
         {
-            "gP",
+            "gp",
             '"+P',
             mode = { "x" },
             desc = "Paste from system clipboard",

@@ -6,11 +6,16 @@ return {
 		vim.api.nvim_set_hl(0, "YankyPut", { link = "IncSearch" })
 		vim.api.nvim_set_hl(0, "YankyYanked", { link = "IncSearch" })
 		return {
-			ring = { history_length = 10 },
+			ring = { history_length = 20 },
 			highlight = { timer = 150, },
 		}
 	end,
 	keys = {
+		-- Copy/paste with system clipboard, NOTE: keymaps are here so yanky gets loaded for highlighting etc.
+		{ 'gy',    '"+y',                            mode = { 'n', 'x' },                     desc = 'Copy to system clipboard' },
+		{ 'gp',    '"+p',                            mode = { 'n' },                          desc = 'Paste from system clipboard' },
+		-- Paste in Visual with `P` to not copy selected text (`:h v_P`)
+		{ 'gP',    '"+P',                            mode = { 'x' },                          desc = 'Paste from system clipboard' },
 		{ 'p',     '<Plug>(YankyPutAfter)',          mode = { 'n', 'x' },                     desc = 'Putyankedtextaftercursor' },
 		{ 'P',     '<Plug>(YankyPutBefore)',         mode = { 'n', 'x' },                     desc = 'Putyankedtextbeforecursor' },
 		{ '=p',    '<Plug>(YankyPutAfterLinewise)',  desc = 'Putyankedtextinlinebelow' },

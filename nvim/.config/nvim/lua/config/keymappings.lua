@@ -14,6 +14,42 @@ vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
 	return '<esc>'
 end, { desc = 'Escape and clear hlsearch', expr = true })
 
+-- Reselect latest changed, put, or yanked text
+vim.keymap.set('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"',
+	{ expr = true, replace_keycodes = false, desc = 'Visually select changed text' })
+
+-- Search inside visually highlighted text. Use `silent = false` for it to
+-- make effect immediately.
+vim.keymap.set('x', 'g/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
+
+-- Alternative way to save and exit in Normal mode.
+-- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
+vim.keymap.set('n', '<C-S>', '<Cmd>silent! update | redraw<CR>', { desc = 'Save' })
+vim.keymap.set({ 'i', 'x' }, '<C-S>', '<Esc><Cmd>silent! update | redraw<CR>', { desc = 'Save and go to Normal mode' })
+
+-- Mode Toggles
+vim.keymap.set({ 'n' }, '\\l', "<Cmd>setlocal list! list?<CR>", { desc = "Toggle 'list'" })
+vim.keymap.set({ 'n' }, '\\r', "<Cmd>setlocal relativenumber! relativenumber?<CR>",
+	{ desc = "Toggle 'relativenumber'" })
+vim.keymap.set({ 'n' }, '\\n', "<Cmd>setlocal number! number?<CR>", { desc = "Toggle 'number'" })
+vim.keymap.set({ 'n' }, '\\s', "<Cmd>setlocal spell! spell?<CR>", { desc = "Toggle 'spell'" })
+vim.keymap.set({ 'n' }, '\\i', "<Cmd>setlocal ignorecase! ignorecase?<CR>", { desc = "Toggle 'ignorecase'" })
+vim.keymap.set({ 'n' }, '\\c', "<Cmd>setlocal cursorline! cursorline?<CR>", { desc = "Toggle 'cursorline'" })
+vim.keymap.set({ 'n' }, '\\C', "<Cmd>setlocal cursorcolumn! cursorcolumn?<CR>",
+	{ desc = "Toggle 'cursorcolumn'" })
+vim.keymap.set({ 'n' }, '\\h',
+	"<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? '  ' : 'no') . 'hlsearch'<CR>",
+	{ desc = "Toggle 'hlsearch'" })
+vim.keymap.set({ 'n' }, '\\w', "<Cmd>setlocal wrap! wrap?<CR>", { desc = "Toggle 'wrap'" })
+vim.keymap.set({ 'n' }, '\\d', function() vim.diagnostic.enable(vim.diagnostic.is_enabled()) end,
+	{ desc = "Toggle diagnostic" })
+
+-- Ctrl hjkl for window navigation
+vim.keymap.set({ 'n' }, "<C-h>", "<C-w>h", { desc = "Focus left" })
+vim.keymap.set({ 'n' }, "<C-j>", "<C-w>j", { desc = "Focus down" })
+vim.keymap.set({ 'n' }, "<C-k>", "<C-w>k", { desc = "Focus up" })
+vim.keymap.set({ 'n' }, "<C-l>", "<C-w>l", { desc = "Focus right" })
+
 -- Larger increments for window resizing
 vim.keymap.set({ 'n' }, "<C-w><", "5<C-w><", { noremap = true, desc = "Decrease width" })
 vim.keymap.set({ 'n' }, "<C-w>>", "5<C-w>>", { noremap = true, desc = "Increase width" })

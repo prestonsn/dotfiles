@@ -42,14 +42,10 @@ return {
 				{ mode = 'n', keys = 'z' },
 				{ mode = 'x', keys = 'z' },
 
-				-- toggles from mini.basics
+				-- Mode toggles
 				{ mode = 'n', keys = '\\' },
 
-				-- mini.surround
-				{ mode = 'n', keys = 's' },
-				{ mode = 'x', keys = 's' },
-
-				-- mini.bracketed
+				-- Navigation
 				{ mode = 'n', keys = '[' },
 				{ mode = 'x', keys = '[' },
 				{ mode = 'n', keys = ']' },

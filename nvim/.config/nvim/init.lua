@@ -10,21 +10,54 @@ require('config.keymappings')
 
 local settings = require('config.settings')
 
--- NOTE: `guess-indent` plugin will auto match existing file for indent settings so they are left default
--- smart/auto indent for new lines - seems to give best results but can also be autoindent = true or smartindent = true
-vim.opt.cindent = true
--- Keep popup menus from being too tall (limit to 30 items)
-vim.opt.pumheight = 30
+-- General settings (using mini.basics as a starting point)
+local o        = vim.opt
 
--- Global settings
--- have a fixed column for the diagnostics to appear in
--- this removes the jitter/shift right when warnings/errors flow in
-vim.opt.signcolumn = "yes"
+-- File handling
+o.updatetime   = 750                 -- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
+o.undofile     = true                -- Enable persistent undo (see also `:h undodir`)
+o.backup       = false               -- Don't store backup while overwriting the file
+o.writebackup  = false               -- Don't store backup while overwriting the file
+
+o.mouse        = 'a'                 -- Enable mouse for all available modes
+vim.cmd('filetype plugin indent on') -- Enable all filetype plugins
+o.termguicolors = true               -- Enable gui colors
+
+
+-- Appearance
+o.breakindent   = true    -- Indent wrapped lines to match line start
+o.cursorline    = true    -- Highlight current line
+o.linebreak     = true    -- Wrap long lines at 'breakat' (if 'wrap' is set)
+o.number        = true    -- Show line numbers
+o.splitbelow    = true    -- Horizontal splits will be below
+o.splitright    = true    -- Vertical splits will be to the right
+
+o.ruler         = false   -- Don't show cursor position in command line
+o.showmode      = false   -- Don't show mode in command line
+o.wrap          = false   -- Display long lines as just one line
+
+o.signcolumn    = 'yes'   -- Always show sign column (otherwise it will shift text)
+o.fillchars     = 'eob: ' -- Don't show `~` outside of buffer
+o.pumheight     = 10      -- Keep popup menus from being too tall (limit to 10 items)
+o.winblend      = 10      -- Make floating windows slightly transparent
+
+-- Editing
+o.ignorecase    = true               -- Ignore case when searching (use `\C` to force not doing that)
+o.incsearch     = true               -- Show search results while typing
+o.infercase     = true               -- Infer letter cases for a richer built-in keyword completion
+o.smartcase     = true               -- Don't ignore case when searching if pattern has upper case
+o.smartindent   = true               -- Make indenting smart (NOTE: `guess-indent` plugin will auto match existing file for indent settings so this doesn't matter much)
+
+o.completeopt   = 'menuone,noselect' -- Customize completions
+o.virtualedit   = 'block'            -- Allow going past the end of line in visual block mode
+o.formatoptions = 'qjl1'             -- Don't autoformat comments
+
+o.splitkeep     = 'screen'           -- Reduce scroll during window split
+o.shortmess:append('WcC')            -- Reduce command line messages
+
 -- colorscheme
 vim.cmd.colorscheme(settings.colorscheme)
-vim.opt.background = settings.background
--- If nothing typed for this many milliseconds then swap file is written to disk (for crash recovery)
-vim.opt.updatetime = 750
+o.background = settings.background
 
 -- Default to rounded borders for floating windows (only if unset)
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

@@ -89,7 +89,7 @@ return {
                 { mode = "n", keys = "<leader>c", desc = "+Code Companion" },
 
                 -- Iron Repl
-                { mode = "n", keys = "<leader>r", desc = "+Iron repl" },
+                { mode = "n", keys = "<leader>r", desc = "+Iron Repl" },
             },
         }
     end,

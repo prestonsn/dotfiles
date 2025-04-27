@@ -42,6 +42,13 @@ return {
             desc = "Buffer Fuzzy Find",
         },
         {
+            "<leader>fZ",
+            function()
+                require("fzf-lua").lines()
+            end,
+            desc = "All Buffer Fuzzy Find",
+        },
+        {
             "<leader>f?",
             function()
                 require("fzf-lua").helptags()
@@ -141,13 +148,6 @@ return {
             desc = "Marks",
         },
         {
-            "<leader>fl",
-            function()
-                require("fzf-lua").colorschemes()
-            end,
-            desc = "Color Scheme",
-        },
-        {
             "<leader>fj",
             function()
                 require("fzf-lua").jumps()
@@ -244,10 +244,14 @@ return {
     opts = {
         keymap = {
             builtin = {
+                -- Enable defaults
+                true,
                 ["<C-d>"] = "preview-page-down",
                 ["<C-u>"] = "preview-page-up",
             },
             fzf = {
+                -- Enable defaults
+                true,
                 ["ctrl-d"] = "preview-page-down",
                 ["ctrl-u"] = "preview-page-up",
             },

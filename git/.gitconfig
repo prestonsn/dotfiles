@@ -1,0 +1,30 @@
+[user]
+	email = jbuckmccready@gmail.com
+	name = Buck McCready
+
+[core]
+	editor = nvim
+
+[init]
+	defaultBranch = main
+
+[interactive]
+	diffFilter = delta --color-only
+
+[merge]
+	conflictstyle = diff3
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[fetch]
+	prune = true
+
+[include]
+	path = ~/.config/delta/themes/catppuccin.gitconfig
+
+[delta]
+	features = catppuccin-mocha

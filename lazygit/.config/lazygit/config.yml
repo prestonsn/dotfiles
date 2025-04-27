@@ -7,17 +7,8 @@ git:
     pager: ""
     # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
     useConfig: false
-    # pick diff tool based on environment variable
-    externalDiffCommand: >
-      sh -c '
-        OLD_FILE="$2";
-        NEW_FILE="$1";
-        if [ "$LAZYGIT_DIFF_TOOL" = "difftastic" ]; then
-          difft --color=always "$OLD_FILE" "$NEW_FILE";
-        else
-          git diff --no-ext-diff --no-index --color=always "$OLD_FILE" "$NEW_FILE" | delta --dark --paging=never;
-        fi
-      ' _ "$@"
+    # delegate to diff-wrapper.sh helper so we can select diff tool when launching lazygit
+    externalDiffCommand: ~/.config/lazygit/diff-wrapper.sh
 os:
   editPreset: nvim
 gui:

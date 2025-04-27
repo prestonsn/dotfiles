@@ -30,10 +30,26 @@ source <(fzf --zsh)
 # added for ls colors on macos
 export CLICOLOR=1
 
-# init oh my post prompt
+# init oh my posh prompt
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
 fi
+
+# Lazygit launchers with specific diff tools
+
+# Launch lazygit with default delta as the diff tool
+lg() {
+  unset LAZYGIT_DIFF_TOOL
+  lazygit "$@"
+}
+
+# Launch lazygit with difftastic as the diff tool
+lgt() {
+  # Export the variable so lazygit and the wrapper script can see it
+  export LAZYGIT_DIFF_TOOL=difftastic
+  lazygit "$@"
+  unset LAZYGIT_DIFF_TOOL
+}
 
 export PATH="/opt/homebrew/bin:$PATH"
 
